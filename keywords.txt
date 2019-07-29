@@ -1,0 +1,26 @@
+#########################################
+# Syntax Coloring Map For Arduino_HTS221
+#########################################
+# Class
+#########################################
+
+Arduino_HTS221	KEYWORD1
+HTS221	KEYWORD1
+HTS	KEYWORD1
+
+#########################################
+# Methods and Functions 
+#########################################	
+
+begin	KEYWORD2
+end	KEYWORD2
+
+readTemperature	KEYWORD2
+readHumidity	KEYWORD2
+
+#########################################
+# Constants
+#########################################
+
+FAHRENHEIT	LITERAL1
+CELSIUS	LITERAL1
