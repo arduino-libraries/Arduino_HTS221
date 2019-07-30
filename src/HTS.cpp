@@ -157,4 +157,8 @@ void HTS221Class::readHTS221Calibration()
   _hts221TemperatureZero = (t0degC / 8.0) - _hts221TemperatureSlope * t0Out;
 }
 
+#ifdef ARDUINO_ARDUINO_NANO33BLE
 HTS221Class HTS(Wire1);
+#else
+HTS221Class HTS(Wire);
+#endif
