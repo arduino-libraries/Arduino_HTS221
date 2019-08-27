@@ -56,8 +56,8 @@ int HTS221Class::begin()
 
   readHTS221Calibration();
 
-  // enable HTS221
-  i2cWrite(HTS221_CTRL1_REG, 0x80);
+  // turn on the HTS221 and enable Block Data Update
+  i2cWrite(HTS221_CTRL1_REG, 0x84);
 
   return 1;
 }
@@ -72,6 +72,9 @@ void HTS221Class::end()
 
 float HTS221Class::readTemperature(int units)
 {
+  // Wait for ONE_SHOT bit to be cleared by the hardware
+  while (i2cRead(HTS221_CTRL2_REG) & 0x01);
+
   // trigger one shot
   i2cWrite(HTS221_CTRL2_REG, 0x01);
 
@@ -92,6 +95,9 @@ float HTS221Class::readTemperature(int units)
 
 float HTS221Class::readHumidity()
 {
+  // Wait for ONE_SHOT bit to be cleared by the hardware
+  while (i2cRead(HTS221_CTRL2_REG) & 0x01);
+
   // trigger one shot
   i2cWrite(HTS221_CTRL2_REG, 0x01);
 
