@@ -1,10 +1,10 @@
 /*
   HTS221 - Temperature Alert
   This example reads data from the on-board HTS221 sensor of the
-  Nano 33 BLE Sense.If the temperature increases above a certain limit, It turns the buzzer on.
+  Nano 33 BLE Sense. If the temperature increases above a certain limit, it turns the buzzer on.
   The circuit:
   - Arduino Nano 33 BLE Sense
-  -Buzzer module connected at pin 9
+  - Active buzzer module connected at pin 9
 
   written by K.Abhijeet
   This example code is in the public domain
@@ -30,7 +30,11 @@ void loop() {
 
   float temperature = HTS.readTemperature();         // read the sensor value
 
-  if (temperature > tempLimit)
+  Serial.print("Temperature = ");                   // print the sensor value
+  Serial.print(temperature);
+  Serial.println(" °C");
+
+  if (temperature > tempLimit)                        
   {
     digitalWrite(9, HIGH);
     delay(500);
@@ -39,11 +43,7 @@ void loop() {
   }
   else
   {
-    digitalWrite(9, LOW);
-    delay(2000);
+    delay(2000);               // wait a while before displaying the next reading If the temperature is below the limit
   }
-  Serial.print("Temperature = ");                   // print the sensor value
-  Serial.print(temperature);
-  Serial.println(" °C");
 
 }
