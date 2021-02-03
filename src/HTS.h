@@ -22,7 +22,7 @@
 
 #include <Arduino.h>
 #include <Wire.h>
-
+#define HTS221_CTRL3_REG            0x22
 enum {
   FAHRENHEIT,
   CELSIUS
@@ -34,6 +34,11 @@ public:
 
   int begin();
   void end();
+
+  void enableDataReady();		//Outputs pin3 DREADY
+  void disableDataReady();
+  void setOpenDrain();
+  void setPushPull();
 
   float readTemperature(int units = CELSIUS);
   float readHumidity();
