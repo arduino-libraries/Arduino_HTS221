@@ -88,14 +88,23 @@ void HTS221Class::disableDataReady(){
 
 void HTS221Class::setOpenDrain(){
 	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
-
-    i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 6);
+  i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 6);
 }
 
 void HTS221Class::setPushPull(){
     uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
 
     i2cWrite(HTS221_CTRL3_REG, data);
+}
+
+void HTS221Class::setActiveHigh(){
+ 	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
+  i2cWrite(HTS221_CTRL3_REG, data);
+}
+
+void HTS221Class::setActiveLow(){
+ 	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
+  i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 7);
 }
 
 float HTS221Class::readTemperature(int units)
