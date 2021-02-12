@@ -35,13 +35,15 @@ public:
   int begin();
   void end();
 
+  float readTemperature(int units = CELSIUS);
+  float readHumidity();
+
   void enableDataReady();		//Outputs pin3 DREADY
   void disableDataReady();
   void setOpenDrain();
   void setPushPull();
-
-  float readTemperature(int units = CELSIUS);
-  float readHumidity();
+  void setActiveHigh();
+  void setActiveLow();
 
 private:
   int i2cRead(uint8_t reg);
