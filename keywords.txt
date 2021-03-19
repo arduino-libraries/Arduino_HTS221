@@ -18,9 +18,16 @@ end	KEYWORD2
 readTemperature	KEYWORD2
 readHumidity	KEYWORD2
 
+enableDataReady KEYWORD2
+disableDataReady    KEYWORD2
+setOpenDrain    KEYWORD2
+setPushPull KEYWORD2
+setActiveHigh   KEYWORD2
+setActiveLow    KEYWORD2
+
 #########################################
 # Constants
 #########################################
 
-FAHRENHEIT	LITERAL1
+FAHRENHEIT  LITERAL1
 CELSIUS	LITERAL1
