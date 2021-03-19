@@ -93,7 +93,6 @@ void HTS221Class::setOpenDrain(){
 
 void HTS221Class::setPushPull(){
     uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
-
     i2cWrite(HTS221_CTRL3_REG, data);
 }
 
