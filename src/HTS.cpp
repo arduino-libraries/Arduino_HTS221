@@ -77,32 +77,32 @@ void HTS221Class::end()
 }
 
 void HTS221Class::enableDataReady(){
-	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b11111000;
-	i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 2);
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b11111000;
+  i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 2);
 }
 
 void HTS221Class::disableDataReady(){
-	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b11111000;
-	i2cWrite(HTS221_CTRL3_REG, data | 0b0 << 2);
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b11111000;
+  i2cWrite(HTS221_CTRL3_REG, data | 0b0 << 2);
 }
 
 void HTS221Class::setOpenDrain(){
-	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
   i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 6);
 }
 
 void HTS221Class::setPushPull(){
-    uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
-    i2cWrite(HTS221_CTRL3_REG, data);
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
+  i2cWrite(HTS221_CTRL3_REG, data);
 }
 
 void HTS221Class::setActiveHigh(){
- 	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
   i2cWrite(HTS221_CTRL3_REG, data);
 }
 
 void HTS221Class::setActiveLow(){
- 	uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
   i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 7);
 }
 
