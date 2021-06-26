@@ -89,7 +89,7 @@ HTS.readTemperature(units)
 
 #### Returns
 
-The temperature in degrees Farenheit or Celsius, depending on the units requested.
+The temperature in degrees Fahrenheit or Celsius, depending on the units requested.
 
 #### Example
 
