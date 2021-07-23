@@ -32,8 +32,8 @@ if (!HTS.begin()) {
 #### See also
 
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
 
 ### `end()`
 
@@ -69,8 +69,8 @@ HTS.end();
 #### See also
 
 * [begin()](#begin)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
 
 ### `readTemperature()`
 
@@ -105,7 +105,7 @@ Serial.println(" °C");
 
 * [begin()](#begin)
 * [end()](#end)
-* [readHumidity()](#readHumidity)
+* [readHumidity()](#readhumidity)
 
 ### `readHumidity()`
 
@@ -139,25 +139,4 @@ Serial.println(" %");
 
 * [begin()](#begin)
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* [readTemperature()](#readtemperature)
