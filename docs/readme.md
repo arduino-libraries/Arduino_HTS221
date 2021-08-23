@@ -1,7 +1,7 @@
 # ArduinoHTS221 library
 
 
-The ArduinoHTS221 library allows you to use the HTS221 sensor available on the Arduino&reg; Nano 33 BLE Sense board to read the temperature and the relative humidity of the environment.
+The ArduinoHTS221 library allows you to use the [HTS221](https://www.st.com/resource/en/datasheet/HTS221.pdf) sensor available on the Arduino&reg; Nano 33 BLE Sense board to read the temperature and the relative humidity of the environment.
 
 To use this library:
 
