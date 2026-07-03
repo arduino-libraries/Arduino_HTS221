@@ -26,6 +26,7 @@
 #define HTS221_WHO_AM_I_REG         0x0f
 #define HTS221_CTRL1_REG            0x20
 #define HTS221_CTRL2_REG            0x21
+#define HTS221_CTRL3_REG            0x22  //Dara Ready (b7 0 active high)(open drain, b6 1)(b2, 1 enable data ready)
 #define HTS221_STATUS_REG           0x27
 #define HTS221_HUMIDITY_OUT_L_REG   0x28
 #define HTS221_TEMP_OUT_L_REG       0x2a
@@ -38,6 +39,7 @@
 #define HTS221_H1_T0_OUT_REG        0x3a
 #define HTS221_T0_OUT_REG           0x3c
 #define HTS221_T1_OUT_REG           0x3e
+
 
 HTS221Class::HTS221Class(TwoWire& wire) :
   _wire(&wire)
@@ -56,8 +58,12 @@ int HTS221Class::begin()
 
   readHTS221Calibration();
 
-  // turn on the HTS221 and enable Block Data Update
-  i2cWrite(HTS221_CTRL1_REG, 0x84);
+  // enable HTS221
+  i2cWrite(HTS221_CTRL1_REG, 0x80);
+
+  // Default DREADY configuration
+  disableDataReady();
+  setPushPull();
 
   return 1;
 }
@@ -70,9 +76,39 @@ void HTS221Class::end()
   _wire->end();
 }
 
+void HTS221Class::enableDataReady(){
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b11111000;
+  i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 2);
+}
+
+void HTS221Class::disableDataReady(){
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b11111000;
+  i2cWrite(HTS221_CTRL3_REG, data | 0b0 << 2);
+}
+
+void HTS221Class::setOpenDrain(){
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
+  i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 6);
+}
+
+void HTS221Class::setPushPull(){
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b10111100;
+  i2cWrite(HTS221_CTRL3_REG, data);
+}
+
+void HTS221Class::setActiveHigh(){
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
+  i2cWrite(HTS221_CTRL3_REG, data);
+}
+
+void HTS221Class::setActiveLow(){
+  uint8_t data = i2cRead(HTS221_CTRL3_REG) & 0b01111111;
+  i2cWrite(HTS221_CTRL3_REG, data | 0b1 << 7);
+}
+
 float HTS221Class::readTemperature(int units)
 {
-  // Wait for ONE_SHOT bit to be cleared by the hardware
+   // Wait for ONE_SHOT bit to be cleared by the hardware
   while (i2cRead(HTS221_CTRL2_REG) & 0x01);
 
   // trigger one shot
